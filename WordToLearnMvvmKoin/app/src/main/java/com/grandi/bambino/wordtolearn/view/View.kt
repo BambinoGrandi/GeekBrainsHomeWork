@@ -1,6 +1,7 @@
 package com.grandi.bambino.wordtolearn.view
 
-import com.grandi.bambino.wordtolearn.model.AppState
+import com.grandi.bambino.model.AppState
+
 
 interface View{
 

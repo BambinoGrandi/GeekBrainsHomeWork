@@ -5,11 +5,13 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.grandi.bambino.core.BaseActivity
 import com.grandi.bambino.wordtolearn.R
-import com.grandi.bambino.wordtolearn.model.AppState
+
 import com.grandi.bambino.wordtolearn.ui.adapter.MainAdapter
 import com.grandi.bambino.wordtolearn.ui.fragments.SearchDialogFragment
-import com.grandi.bambino.wordtolearn.viewmodel.MainViewModel
+import com.grandi.bambino.wordtolearn.MainViewModel
+import com.grandi.bambino.model.AppState
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -29,7 +31,7 @@ class MainActivity : BaseActivity<AppState>() {
 
         val viewModelDelegate : MainViewModel by viewModel()
         viewModel = viewModelDelegate
-        viewModel.subscribe().observe(this@MainActivity, Observer<AppState>{
+        viewModel.subscribe().observe(this@MainActivity, Observer<com.grandi.bambino.model.AppState>{
             renderData(it)
         })
 
@@ -48,9 +50,9 @@ class MainActivity : BaseActivity<AppState>() {
     }
 
 
-    override fun renderData(model: AppState) {
+    override fun renderData(model: com.grandi.bambino.model.AppState) {
         when (model) {
-            is AppState.Success -> {
+            is com.grandi.bambino.model.AppState.Success -> {
                 val searchResult = model.data
                 if (searchResult == null || searchResult.isEmpty())
                     showError()
@@ -64,7 +66,7 @@ class MainActivity : BaseActivity<AppState>() {
                 }
 
             }
-            is AppState.Error -> {
+            is com.grandi.bambino.model.AppState.Error -> {
                 showError()
             }
         }

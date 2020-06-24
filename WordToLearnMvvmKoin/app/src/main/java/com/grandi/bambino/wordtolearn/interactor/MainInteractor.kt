@@ -1,16 +1,11 @@
 package com.grandi.bambino.wordtolearn.interactor
 
-import com.grandi.bambino.wordtolearn.di.NAME_REPOSITORY
-import com.grandi.bambino.wordtolearn.interactor.IMainInteractor
-import com.grandi.bambino.wordtolearn.model.AppState
-import com.grandi.bambino.wordtolearn.model.data.SearchResult
-import com.grandi.bambino.wordtolearn.repository.IRepository
-import io.reactivex.Single
-import javax.inject.Inject
-import javax.inject.Named
+import com.grandi.bambino.model.AppState
+import com.grandi.bambino.model.model.data.SearchResult
 
-class MainInteractor (val repository: IRepository<List<SearchResult>>) : IMainInteractor<AppState> {
-    override suspend fun getData(word: String, isOnline: Boolean) : AppState {
+
+class MainInteractor (val repository: com.grandi.bambino.repository.IRepository<List<SearchResult>>) : IMainInteractor<AppState> {
+    override suspend fun getData(word: String, isOnline: Boolean) : com.grandi.bambino.model.AppState {
         return AppState.Success(repository.getData(word, isOnline))
     }
 }

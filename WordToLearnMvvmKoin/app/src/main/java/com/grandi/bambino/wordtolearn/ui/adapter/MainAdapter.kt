@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grandi.bambino.wordtolearn.R
-import com.grandi.bambino.wordtolearn.model.data.SearchResult
+import com.grandi.bambino.model.model.data.SearchResult
 import kotlinx.android.synthetic.main.item_words.view.*
-class MainAdapter(private var data: List<SearchResult>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    fun getData(data: List<SearchResult>){
+class MainAdapter(private var data: List<com.grandi.bambino.model.model.data.SearchResult>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+
+    fun getData(data: List<com.grandi.bambino.model.model.data.SearchResult>){
         this.data = data
         notifyDataSetChanged()
     }
@@ -28,7 +29,7 @@ class MainAdapter(private var data: List<SearchResult>) : RecyclerView.Adapter<M
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(data:SearchResult){
+        fun bind(data: SearchResult){
             if (layoutPosition !=RecyclerView.NO_POSITION){
                 itemView.words_text_view.text = data.word
                 itemView.translate_text_view.text = data.meanings?.get(0)?.translation?.translation
