@@ -9,8 +9,8 @@ object Config {
 }
 
 object Releases {
-    const val version_code = 1
-    const val version_name = "1.0"
+    const val version_code = 2
+    const val version_name = "2.0"
 }
 
 object Modules {
@@ -18,7 +18,8 @@ object Modules {
     const val core = ":core"
     const val model = ":model"
     const val repository = ":repository_main"
-    
+    const val history = ":historyscreen"
+
 }
 
 object Versions {
@@ -49,6 +50,9 @@ object Versions {
     const val roomKtx = "2.2.0-alpha01"
     const val runtime = "2.2.0-alpha01"
     const val roomCompiler = "2.2.0-alpha01"
+
+    //Google Play
+    const val googlePlayCore = "1.6.3"
 
     // Test
     const val jUnit = "4.12"
@@ -96,4 +100,9 @@ object TestImpl {
     const val runner = "androidx.test:runner:${Versions.runner}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 }
+
+object GooglePlay {
+    const val googlePlayCore = "com.google.android.play:core:${Versions.googlePlayCore}"
+}
+
 
