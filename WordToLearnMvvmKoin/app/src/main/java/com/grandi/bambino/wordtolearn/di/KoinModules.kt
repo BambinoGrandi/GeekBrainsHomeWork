@@ -21,8 +21,6 @@ private val loadModules by lazy{
 }
 
 val application = module {
-//    single<IDataSource<List<SearchResult>>> { DataSourceLocal(RoomDataBase()) }
-//    single<IDataSource<List<SearchResult>>> { DataSourceRemote(RetrofitHolder()) }
 
     single<IRepository<List<SearchResult>>> { Repository(DataSourceLocal(RoomDataBase()), DataSourceRemote(RetrofitHolder())) }
 }
