@@ -51,7 +51,7 @@ class MainActivity : BaseActivity<AppState>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        checkForUpdates()
         injectDependencies()
         val viewModelDelegate: MainViewModel by viewModel()
         viewModel = viewModelDelegate
@@ -72,6 +72,7 @@ class MainActivity : BaseActivity<AppState>() {
             })
             searchDialogFragment.show(supportFragmentManager, null)
         }
+
     }
 
 
