@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/historyscreen" />
             <option value="$PROJECT_DIR$/model" />
             <option value="$PROJECT_DIR$/repository_main" />
+            <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

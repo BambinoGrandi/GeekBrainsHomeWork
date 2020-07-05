@@ -2,7 +2,9 @@ package com.grandi.bambino.wordtolearn.ui.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.GONE
@@ -37,6 +39,7 @@ private const val HISTORY_ACTIVITY_PATH =
     "com.grandi.bambino.historyscreen.view.history.HistoryActivity"
 private const val HISTORY_ACTIVITY_FEATURE_NAME = "historyScreen"
 private const val REQUEST_CODE = 44
+private const val SETTING_REQUEST_CODE = 41
 
 class MainActivity : BaseActivity<AppState>() {
 
@@ -66,7 +69,10 @@ class MainActivity : BaseActivity<AppState>() {
                 SearchDialogFragment.ClickSearchListener {
                 override fun onClick(word: String) {
                     //получаем LiveData и подписываемся на изменения, передавая туда observer
-                    viewModel.getData(word, true)
+                    if(isNetworkAvailable)
+                        viewModel.getData(word, isNetworkAvailable)
+                    else
+                        showNoInternetConnectionDialog()
                 }
 
             })
@@ -101,6 +107,8 @@ class MainActivity : BaseActivity<AppState>() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        menu?.findItem(R.id.menu_screen_settings)?.isVisible =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -127,6 +135,10 @@ class MainActivity : BaseActivity<AppState>() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+                true
+            }
+            R.id.menu_screen_settings -> {
+                startActivityForResult(Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), SETTING_REQUEST_CODE)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -18,6 +18,7 @@ object Modules {
     const val core = ":core"
     const val model = ":model"
     const val repository = ":repository_main"
+    const val utils = ":utils"
     const val history = ":historyscreen"
 
 }
